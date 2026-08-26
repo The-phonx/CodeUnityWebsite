@@ -227,7 +227,13 @@
 
 .testimonial-grid {
   align-items: stretch;
-  margin-bottom: 4rem; /* Adds clean spacing above the purple banner */
+  margin-bottom: 0;
+}
+
+.testimonial-actions {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
 }
 
 /* Remove the margin from the cards since the grid handles it now */
@@ -273,6 +279,26 @@
   color: white;
   font-weight: 850;
   background: linear-gradient(135deg, var(--indigo), var(--teal-dark));
+}
+
+.testimonial-card--teal {
+  border-top-color: var(--teal-dark);
+}
+
+.testimonial-card--sky {
+  border-top-color: #0284c7;
+}
+
+.testimonial-card--teal .testimonial-mark {
+  color: var(--teal-dark);
+}
+
+.testimonial-card--sky .testimonial-mark {
+  color: #0284c7;
+}
+
+.testimonial-empty {
+  grid-column: 1 / -1;
 }
 
 .testimonial-person cite,
