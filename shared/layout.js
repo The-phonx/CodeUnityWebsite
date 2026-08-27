@@ -6,6 +6,7 @@ const pages = [
   ["home", "Home", `${depth}home/index.html`],
   ["programs", "Programs", `${depth}programs/index.html`],
   ["project-samples", "Projects", `${depth}project-samples/index.html`],
+  ["testimonials", "Testimonials", `${depth}testimonials/index.html`],
   ["events", "Events", `${depth}events/index.html`],
   ["sponsors", "Sponsors", `${depth}sponsors/index.html`],
   ["team", "Team", `${depth}team/index.html`],

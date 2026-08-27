@@ -1,5 +1,8 @@
 (function () {
   const allowedAccents = new Set(["indigo", "teal", "sky"]);
+  const websiteIcon = document.currentScript?.src
+    ? new URL("logo-transparent.png", document.currentScript.src).href
+    : "../shared/logo-transparent.png";
   const rawStories = Array.isArray(window.CODEUNITY_TESTIMONIALS)
     ? window.CODEUNITY_TESTIMONIALS
     : [];
@@ -36,19 +39,14 @@
 
   const stories = rawStories.map(normalizeStory).filter(Boolean);
 
-  function getInitials(name) {
-    return name
-      .split(/\s+/)
-      .slice(0, 2)
-      .map((part) => part.charAt(0).toUpperCase())
-      .join("");
-  }
-
-  function createAvatar(story, className) {
-    const avatar = document.createElement("span");
+  function createAvatar(_story, className) {
+    const avatar = document.createElement("img");
     avatar.className = className;
+    avatar.src = websiteIcon;
+    avatar.alt = "";
+    avatar.width = 48;
+    avatar.height = 48;
     avatar.setAttribute("aria-hidden", "true");
-    avatar.textContent = getInitials(story.name);
     return avatar;
   }
 

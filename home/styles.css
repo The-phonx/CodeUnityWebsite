@@ -271,14 +271,9 @@
 .testimonial-avatar {
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   flex: 0 0 auto;
-  color: white;
-  font-weight: 850;
-  background: linear-gradient(135deg, var(--indigo), var(--teal-dark));
+  object-fit: contain;
 }
 
 .testimonial-card--teal {

@@ -395,13 +395,8 @@ body.story-lightbox-open {
   width: 48px;
   height: 48px;
   flex: 0 0 auto;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  background: linear-gradient(135deg, var(--story-accent), #14b8a6);
-  font-weight: 900;
+  display: block;
+  object-fit: contain;
 }
 
 .story-person cite,
