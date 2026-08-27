@@ -143,6 +143,15 @@
   transform: rotate(0) translateY(-7px);
 }
 
+.story-card--zoomable {
+  cursor: zoom-in;
+}
+
+.story-card--zoomable:focus-visible {
+  outline: 3px solid var(--story-accent);
+  outline-offset: 5px;
+}
+
 .story-card:nth-child(6n + 1) {
   --story-rotate: -2deg;
   grid-column: 1 / 7;
@@ -196,17 +205,163 @@
 }
 
 .story-photo {
+  position: relative;
   margin: 0;
-  aspect-ratio: 4 / 3;
+  height: clamp(240px, 28vw, 320px);
   overflow: hidden;
   border-radius: 8px 22px 0 0;
-  background: #e2e8f0;
+  background: linear-gradient(145deg, #eef2ff, #ecfeff);
 }
 
 .story-photo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+}
+
+.story-lightbox {
+  --lightbox-accent: #4f46e5;
+  --lightbox-paper: #fffefb;
+  --lightbox-photo: #eef2ff;
+  position: fixed;
+  width: min(94vw, 1180px);
+  height: min(94dvh, 920px);
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  border: 0;
+  overflow: visible;
+  color: var(--ink);
+  background: transparent;
+}
+
+.story-lightbox[data-accent="teal"] {
+  --lightbox-accent: #0f766e;
+  --lightbox-paper: #f4fffb;
+  --lightbox-photo: #ecfdf5;
+}
+
+.story-lightbox[data-accent="sky"] {
+  --lightbox-accent: #0284c7;
+  --lightbox-paper: #f5fbff;
+  --lightbox-photo: #e0f2fe;
+}
+
+.story-lightbox::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  width: clamp(72px, 8vw, 92px);
+  height: clamp(22px, 2.4vw, 27px);
+  top: -13px;
+  left: 50%;
+  border: 1px solid rgb(180 137 52 / .12);
+  background: rgb(254 240 138 / .78);
+  box-shadow: 0 4px 10px rgb(15 23 42 / .12);
+  transform: translateX(-50%) rotate(2deg);
+}
+
+.story-lightbox::backdrop {
+  background: rgb(15 23 42 / .76);
+  backdrop-filter: blur(9px);
+}
+
+.story-lightbox-panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgb(148 163 184 / .34);
+  border-radius: 8px 22px 12px 20px;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  overflow: hidden;
+  background: var(--lightbox-paper);
+  box-shadow: 0 30px 90px rgb(15 23 42 / .34), inset 0 0 0 1px rgb(255 255 255 / .8);
+}
+
+.story-lightbox-image-wrap {
+  min-width: 0;
+  min-height: 0;
+  padding: clamp(16px, 3vw, 32px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(145deg, var(--lightbox-photo), var(--lightbox-paper));
+}
+
+.story-lightbox-image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.story-lightbox-caption {
+  min-height: 72px;
+  padding: 14px clamp(62px, 7vw, 86px) 14px clamp(18px, 3vw, 32px);
+  border-top: 1px solid rgb(148 163 184 / .28);
+  border-left: 4px solid var(--lightbox-accent);
+  background: var(--lightbox-paper);
+}
+
+.story-lightbox-caption strong,
+.story-lightbox-caption span {
+  display: block;
+}
+
+.story-lightbox-caption span {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.story-lightbox-close {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgb(148 163 184 / .4);
+  border-radius: 50%;
+  color: var(--ink);
+  background: rgb(255 255 255 / .9);
+  box-shadow: 0 8px 22px rgb(15 23 42 / .14);
+  font-size: 0;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.story-lightbox-close::before,
+.story-lightbox-close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.story-lightbox-close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.story-lightbox-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.story-lightbox-close:hover {
+  color: var(--lightbox-accent);
+  background: white;
+}
+
+body.story-lightbox-open {
+  overflow: hidden;
 }
 
 .story-mark {
@@ -397,6 +552,19 @@
   .story-cta .button {
     grid-column: auto;
     width: 100%;
+  }
+
+  .story-lightbox {
+    width: 96vw;
+    height: 94dvh;
+  }
+
+  .story-lightbox-panel {
+    border-radius: 8px 18px 12px 16px;
+  }
+
+  .story-lightbox-caption {
+    min-height: 68px;
   }
 }
 
