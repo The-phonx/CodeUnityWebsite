@@ -227,9 +227,18 @@
 
 .testimonial-grid {
   align-items: stretch;
+  margin-bottom: 0;
 }
 
+.testimonial-actions {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Remove the margin from the cards since the grid handles it now */
 .testimonial-card {
+  /* remove margin-top: 2rem; */
   min-height: 360px;
   padding: 34px;
   display: flex;
@@ -272,6 +281,26 @@
   background: linear-gradient(135deg, var(--indigo), var(--teal-dark));
 }
 
+.testimonial-card--teal {
+  border-top-color: var(--teal-dark);
+}
+
+.testimonial-card--sky {
+  border-top-color: #0284c7;
+}
+
+.testimonial-card--teal .testimonial-mark {
+  color: var(--teal-dark);
+}
+
+.testimonial-card--sky .testimonial-mark {
+  color: #0284c7;
+}
+
+.testimonial-empty {
+  grid-column: 1 / -1;
+}
+
 .testimonial-person cite,
 .testimonial-person span {
   display: block;
@@ -296,16 +325,17 @@
   background: linear-gradient(145deg, #f8fafc, #eef2ff);
 }
 
-.testimonial-placeholder .testimonial-mark {
-  color: #94a3b8;
+.testimonial-placeholder-logo {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.38;
 }
 
 .testimonial-placeholder h3 {
-  margin: 24px 0 10px;
-}
-
-.testimonial-placeholder p {
-  color: var(--muted);
+  margin: 24px 0 0;
 }
 
 .program-grid {
@@ -339,12 +369,26 @@
   font-weight: 900;
 }
 
+/* 1. Force the section to break out of parent constraints to full width */
 .impact-band {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  max-width: none;
   padding: 88px 0;
   color: white;
-  background:
+  background: 
     radial-gradient(circle at 28% 12%, rgb(67 56 202 / 0.55), transparent 30%),
     linear-gradient(135deg, #37308f 0%, #2f2c90 52%, #111827 100%);
+}
+
+/* 2. Remove standard section padding/margins if inherited from .section */
+.section.impact-band {
+  border-radius: 0;
+  max-width: none;
 }
 
 .impact-band .eyebrow {
